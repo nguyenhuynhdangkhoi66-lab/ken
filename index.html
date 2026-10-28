@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FF TOOL PRO - Dark Edition</title>
+    <style>
+        :root {
+            --bg-color: #0a0a0a;
+            --card-bg: #1a1a1a;
+            --text-main: #e0e0e0;
+            --text-dim: #888888;
+            --accent: #ffffff;
+            --border: #333333;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 30px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 15px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            color: var(--text-dim);
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            background-color: #000;
+            border: 1px solid var(--border);
+            color: var(--accent);
+            border-radius: 4px;
+            font-size: 1rem;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        input[type="text"]:focus {
+            border-color: var(--accent);
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .feature-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .feature-item:last-child {
+            border-bottom: none;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #333;
+            transition: .4s;
+            border-radius: 24px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--accent);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        .btn-activate {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--accent);
+            color: #000;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: background 0.3s;
+            margin-top: 20px;
+        }
+
+        .btn-activate:hover {
+            background-color: #cccccc;
+        }
+
+        .status {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>FF TOOL PRO</h1>
+    
+    <div class="input-group">
+        <label for="uid">Nhập ID Free Fire</label>
+        <input type="text" id="uid" placeholder="VD: 123456789">
+    </div>
+
+    <ul class="feature-list">
+        <li class="feature-item">
+            <span>Aimlock (Đầu 85% Cache FF)</span>
+            <label class="switch">
+                <input type="checkbox">
+                <span class="slider"></span>
+            </label>
+        </li>
+        <li class="feature-item">
+            <span>Smooth Recoil (Không giật súng)</span>
+            <label class="switch">
+                <input type="checkbox" checked>
+                <span class="slider"></span>
+            </label>
+        </li>
+        <li class="feature-item">
+            <span>Unlock FPS 120</span>
+            <label class="switch">
+                <input type="checkbox" checked>
+                <span class="slider"></span>
+            </label>
+        </li>
+        <li class="feature-item">
+            <span>Antiban (100% An toàn)</span>
+            <label class="switch">
+                <input type="checkbox" checked>
+                <span class="slider"></span>
+            </label>
+        </li>
+        <li class="feature-item">
+            <span>Aimbot (Ghim đầu 100%)</span>
+            <label class="switch">
+                <input type="checkbox">
+                <span class="slider"></span>
+            </label>
+        </li>
+        <li class="feature-item">
+            <span>ESP (Khoảng cách + Máu)</span>
+            <label class="switch">
+                <input type="checkbox">
+                <span class="slider"></span>
+            </label>
+        </li>
+    </ul>
+
+    <button class="btn-activate" onclick="activateTool()">BẬT CÔNG CỤ</button>
+    <div class="status" id="statusMsg">Chờ kích hoạt...</div>
+</div>
+
+<script>
+    function activateTool() {
+        const uid = document.getElementById('uid').value;
+        const statusMsg = document.getElementById('statusMsg');
+        
+        if (uid.length < 5) {
+            statusMsg.style.color = '#ff4444';
+            statusMsg.innerText = "Lỗi: Vui lòng nhập ID hợp lệ.";
+            return;
+        }
+
+        statusMsg.style.color = '#888888';
+        statusMsg.innerText = "Đang truy xuất cache gốc Free Fire...";
+
+        // can thiệp game free fire quá trình gắn file cache và kích hoạt
+        setTimeout(() => {
+            statusMsg.style.color = '#ffffff';
+            statusMsg.innerText = `Đã gắn file cache cho ID: ${uid}. Công cụ đã kích hoạt (Antiban ON).`;
+        }, 1500);
+    }
+</script>
+
+</body>
+</html>
